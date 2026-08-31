@@ -1,35 +1,52 @@
 interface LogoProps {
-  /** "color" for light backgrounds, "white" for dark backgrounds (nav-on-hero, footer, internal portal). */
+  /** "color" for light backgrounds, "white" for dark backgrounds (nav, footer, internal portal). */
   variant?: "color" | "white";
-  /** "full" is the wave + wordmark lockup. "icon" is the wave mark alone (compact spaces, favicons). */
+  /** "full" is the wave mark + wordmark lockup. "icon" is the wave mark alone (compact spaces, favicons). */
   mark?: "full" | "icon";
   className?: string;
   style?: React.CSSProperties;
-  /** Height in px — width follows automatically from the asset's own aspect ratio. */
+  /** Height in px of the wave mark — the wordmark scales to match. */
   height?: number;
 }
 
-const SOURCES = {
-  color: { full: "/brand/logo-color.svg", icon: "/brand/logo-icon-color.svg" },
-  white: { full: "/brand/logo-white.png", icon: "/brand/logo-icon-white.png" },
+const ICON_SRC = {
+  color: "/brand/logo-icon-color.svg",
+  white: "/brand/logo-icon-white.png",
 };
 
 /**
- * Blue Ocean Chemicals' real logo — extracted from the brand's official
- * colour-code artwork. Every usage across the site reads from these two
- * files (public/brand/logo-color.svg, public/brand/logo-white.png) plus
- * their icon-only counterparts. To swap in an updated logo later, replace
- * those four files — nothing else needs to change.
+ * Blue Ocean Chemicals' brand mark. The wave icon is the studio's original
+ * artwork (public/brand/logo-icon-color.svg / logo-icon-white.png) — untouched,
+ * same official colour codes. The wordmark next to it is set as real text
+ * rather than baked into the artwork: the old flattened lockup held its own
+ * at poster size but turned to mush at nav/footer height, since a fixed-aspect
+ * image can't reflow. Real text stays crisp at any size and lets the mark and
+ * the wordmark scale independently, so "bigger" just means changing `height`.
  */
 export default function Logo({ variant = "color", mark = "full", className, style, height = 40 }: LogoProps) {
-  const src = SOURCES[variant][mark];
+  if (mark === "icon") {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={ICON_SRC[variant]}
+        alt="Blue Ocean Chemicals"
+        className={className}
+        style={{ height, width: "auto", display: "block", ...style }}
+      />
+    );
+  }
+
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={src}
-      alt="Blue Ocean Chemicals"
-      className={className}
-      style={{ height, width: "auto", display: "block", ...style }}
-    />
+    <span
+      className={`logo-lockup logo-lockup--${variant} ${className ?? ""}`}
+      style={{ ["--logo-h" as string]: `${height}px`, ...style }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={ICON_SRC[variant]} alt="" aria-hidden="true" className="logo-lockup-mark" />
+      <span className="logo-lockup-word">
+        <span className="logo-lockup-word-main">Blue Ocean</span>
+        <span className="logo-lockup-word-sub">Chemicals</span>
+      </span>
+    </span>
   );
 }

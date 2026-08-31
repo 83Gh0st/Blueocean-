@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
 const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/chemicals", label: "Products" },
   { href: "/#capabilities", label: "Capabilities" },
@@ -46,7 +47,7 @@ export default function Nav() {
   return (
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
       <Link href="/" className="nav-brand" aria-label="Blue Ocean Chemicals — home">
-        <Logo variant="color" height={38} />
+        <Logo variant="color" height={44} />
       </Link>
 
       <div className={`nav-links ${open ? "open" : ""}`} id="navLinks">

@@ -83,7 +83,7 @@ export default function Hero() {
     <header className="hero" id="top">
       <div className="hero-photo">
         <Image
-          src="https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?fm=jpg&q=80&w=2400&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1754937152841-71c630b284ff?fm=jpg&q=80&w=2400&auto=format&fit=crop"
           alt=""
           fill
           priority
