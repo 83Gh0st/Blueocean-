@@ -11,7 +11,7 @@ interface LogoProps {
 
 const ICON_SRC = {
   color: "/brand/logo-color.svg",
-  white: "/brand/logo-color.svg",
+  white: "/brand/logo-white.png",
 };
 
 /**
