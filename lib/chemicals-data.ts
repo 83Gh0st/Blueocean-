@@ -23,8 +23,8 @@ import {
 export type ChemistryClass =
   | "Antiscalant"
   | "Corrosion Inhibitor"
-  | "Biocide — Oxidising"
-  | "Biocide — Non-oxidising"
+  | "Biocide (Oxidising)"
+  | "Biocide (Non-oxidising)"
   | "Membrane Cleaner"
   | "Dechlorination"
   | "Oxygen Scavenger"
@@ -117,7 +117,7 @@ export const productLines: ProductLine[] = [
         chemistryClass: "Membrane Cleaner",
         form: "Powder",
         summary:
-          "Low-pH cleaner for scale and metal-oxide fouling — calcium carbonate, iron and manganese deposits that alkaline cleans alone won't shift.",
+          "Low-pH cleaner for scale and metal-oxide fouling: calcium carbonate, iron and manganese deposits that alkaline cleans alone won't shift.",
         benefits: [
           "Dissolves mineral scale and iron fouling",
           "Restores normalised permeate flow after hard-water upsets",
@@ -129,13 +129,13 @@ export const productLines: ProductLine[] = [
         id: "boc-ro-415",
         code: "BOC-RO 415",
         name: "Membrane Preservative & Biocide",
-        chemistryClass: "Biocide — Non-oxidising",
+        chemistryClass: "Biocide (Non-oxidising)",
         form: "Liquid",
         summary:
           "Non-oxidising biocide for standby or seasonally idle RO trains, preventing biological growth on the membrane surface during shutdown periods.",
         benefits: [
           "Protects membranes during standby or storage",
-          "Non-oxidising formulation — safe for polyamide membranes",
+          "Non-oxidising formulation, safe for polyamide membranes",
           "Simple single-dose preservation protocol",
         ],
         packaging: ["25 L drum", "200 L drum"],
@@ -166,7 +166,7 @@ export const productLines: ProductLine[] = [
     icon: Snowflake,
     headline: "Closed loops, protected for the long run.",
     description:
-      "Closed chilled water systems only fail when something is overlooked — a top-up that dilutes inhibitor, a mixed-metal loop with no molybdate protection, a corner where biofilm quietly builds. Our closed-loop range is dosed once, monitored occasionally, and built to stay stable for years.",
+      "Closed chilled water systems only fail when something is overlooked: a top-up that dilutes inhibitor, a mixed-metal loop with no molybdate protection, a corner where biofilm quietly builds. Our closed-loop range is dosed once, monitored occasionally, and built to stay stable for years.",
     applications: [
       "Chiller barrels & plate exchangers",
       "Fan coil & AHU circuits",
@@ -180,7 +180,7 @@ export const productLines: ProductLine[] = [
         chemistryClass: "Corrosion Inhibitor",
         form: "Liquid",
         summary:
-          "A nitrite-based inhibitor package that lays down a passive oxide film on steel surfaces — the standard, well-proven choice for closed steel chilled and heating loops.",
+          "A nitrite-based inhibitor package that lays down a passive oxide film on steel surfaces: the standard, well-proven choice for closed steel chilled and heating loops.",
         benefits: [
           "Forms a stable passive layer on mild steel",
           "Simple field test kit available for residual monitoring",
@@ -195,7 +195,7 @@ export const productLines: ProductLine[] = [
         chemistryClass: "Corrosion Inhibitor",
         form: "Liquid",
         summary:
-          "A low-toxicity molybdate and azole blend suited to mixed-metallurgy loops — steel, copper and aluminium together — where a single-metal inhibitor falls short.",
+          "A low-toxicity molybdate and azole blend suited to mixed-metallurgy loops (steel, copper and aluminium together) where a single-metal inhibitor falls short.",
         benefits: [
           "Protects steel, copper and aluminium in the same loop",
           "Effective at low dose concentrations",
@@ -207,7 +207,7 @@ export const productLines: ProductLine[] = [
         id: "boc-ch-830",
         code: "BOC-CH 830",
         name: "Closed System Biocide",
-        chemistryClass: "Biocide — Non-oxidising",
+        chemistryClass: "Biocide (Non-oxidising)",
         form: "Liquid",
         summary:
           "A broad-spectrum biocide for closed loops where slow-moving water and warm plant rooms create pockets for microbial growth and biofilm.",
@@ -256,10 +256,10 @@ export const productLines: ProductLine[] = [
         id: "boc-ct-610",
         code: "BOC-CT 610",
         name: "Stabilised Oxidising Biocide",
-        chemistryClass: "Biocide — Oxidising",
+        chemistryClass: "Biocide (Oxidising)",
         form: "Liquid",
         summary:
-          "A bromine-based oxidising biocide that stays active across a wider pH range than chlorine alone — a core control measure for Legionella and general microbial load.",
+          "A bromine-based oxidising biocide that stays active across a wider pH range than chlorine alone: a core control measure for Legionella and general microbial load.",
         benefits: [
           "Effective across alkaline cooling water pH",
           "Fast-acting kill of planktonic bacteria and algae",
@@ -271,7 +271,7 @@ export const productLines: ProductLine[] = [
         id: "boc-ct-620",
         code: "BOC-CT 620",
         name: "Non-Oxidising Biocide",
-        chemistryClass: "Biocide — Non-oxidising",
+        chemistryClass: "Biocide (Non-oxidising)",
         form: "Liquid",
         summary:
           "An isothiazolinone-based biocide rotated with the oxidising programme to control organisms that build resistance to oxidising biocides alone, and to knock down established biofilm.",
@@ -308,7 +308,7 @@ export const productLines: ProductLine[] = [
     icon: Flame,
     headline: "Pure steam, protected metal, lower fuel bills.",
     description:
-      "Scale and oxygen corrosion are the two failure modes that quietly cost the most in a steam plant — a millimetre of scale on a heat-transfer surface is a measurable jump in fuel burn. Our boiler range is dosed to hold alkalinity, strip dissolved oxygen, and keep the condensate return line from turning acidic.",
+      "Scale and oxygen corrosion are the two failure modes that quietly cost the most in a steam plant: a millimetre of scale on a heat-transfer surface is a measurable jump in fuel burn. Our boiler range is dosed to hold alkalinity, strip dissolved oxygen, and keep the condensate return line from turning acidic.",
     applications: [
       "Fire-tube & water-tube steam boilers",
       "Hot water generators",
@@ -353,7 +353,7 @@ export const productLines: ProductLine[] = [
         chemistryClass: "Alkalinity & pH Control",
         form: "Liquid",
         summary:
-          "A phosphate-based programme that buffers alkalinity and precipitates hardness salts as a soft, mobile sludge — controlled scale, not scale prevention by hope.",
+          "A phosphate-based programme that buffers alkalinity and precipitates hardness salts as a soft, mobile sludge: controlled scale, not scale prevention by hope.",
         benefits: [
           "Maintains protective alkalinity at the boiler metal",
           "Converts hardness into removable, non-adherent sludge",
@@ -402,7 +402,7 @@ export const productLines: ProductLine[] = [
     icon: Waves,
     headline: "Guest-ready water, every single morning.",
     description:
-      "Bather load, sun exposure and Gulf heat all push against pool water chemistry at once. Our pool range is formulated for that combination — steady sanitiser residuals, buffered alkalinity, and clarity that holds through a full day of heavy use.",
+      "Bather load, sun exposure and Gulf heat all push against pool water chemistry at once. Our pool range is formulated for that combination: steady sanitiser residuals, buffered alkalinity, and clarity that holds through a full day of heavy use.",
     applications: [
       "Hotel & resort pools",
       "Residential & community pools",
@@ -417,7 +417,7 @@ export const productLines: ProductLine[] = [
         chemistryClass: "Algaecide",
         form: "Liquid",
         summary:
-          "A polyquat-based algaecide used alongside routine sanitising to prevent algae bloom in warm, sun-exposed water — non-foaming and safe for bather-loaded pools.",
+          "A polyquat-based algaecide used alongside routine sanitising to prevent algae bloom in warm, sun-exposed water, non-foaming and safe for bather-loaded pools.",
         benefits: [
           "Prevents algae bloom in warm outdoor pools",
           "Non-foaming formulation, safe during bather hours",
@@ -436,7 +436,7 @@ export const productLines: ProductLine[] = [
         benefits: [
           "Clears cloudy water without a full backwash cycle",
           "Compatible with sand and cartridge filtration",
-          "Fast visible results — ideal ahead of peak hours",
+          "Fast visible results, ideal ahead of peak hours",
         ],
         packaging: ["5 L bottle", "25 L drum"],
       },
@@ -481,7 +481,7 @@ export const productLines: ProductLine[] = [
     icon: GlassWater,
     headline: "Safe to drink, reliably, at every outlet.",
     description:
-      "Potable supply chemistry has to get one thing right, every time: water that's genuinely safe at the point of use. Our potable water range covers disinfection, distribution-side corrosion control and taste conditioning — formulated to potable-grade standards throughout.",
+      "Potable supply chemistry has to get one thing right, every time: water that's genuinely safe at the point of use. Our potable water range covers disinfection, distribution-side corrosion control and taste conditioning, formulated to potable-grade standards throughout.",
     applications: [
       "Municipal & community supply",
       "Hotel & residential potable systems",
@@ -541,8 +541,8 @@ export const productLines: ProductLine[] = [
 export const chemistryClasses: ChemistryClass[] = [
   "Antiscalant",
   "Corrosion Inhibitor",
-  "Biocide — Oxidising",
-  "Biocide — Non-oxidising",
+  "Biocide (Oxidising)",
+  "Biocide (Non-oxidising)",
   "Membrane Cleaner",
   "Dechlorination",
   "Oxygen Scavenger",

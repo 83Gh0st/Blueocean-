@@ -15,8 +15,8 @@ export default function CatalogBottomCta() {
         >
           <h2 style={{ color: "var(--white)" }}>Not sure which product fits your system?</h2>
           <p style={{ color: "rgba(247,249,252,0.65)", marginTop: "1rem" }}>
-            Send us your feed water analysis or system specs and our technical team will recommend a dosing program
-            — no obligation.
+            Send us your feed water analysis or system specs and our technical team will recommend a dosing program,
+            no obligation.
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "2rem", flexWrap: "wrap" }}>
             <Link href="/#contact" className="btn btn-light">

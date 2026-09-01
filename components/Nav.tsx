@@ -46,7 +46,7 @@ export default function Nav() {
 
   return (
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-      <Link href="/" className="nav-brand" aria-label="Blue Ocean Chemicals — home">
+      <Link href="/" className="nav-brand" aria-label="Blue Ocean Chemicals, home">
         <Logo variant="color" height={44} />
       </Link>
 

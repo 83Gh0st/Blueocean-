@@ -49,7 +49,7 @@ export default function AboutHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
         >
-          Blue Ocean For Chemicals Manufacturing LLC — a team of seasoned professionals manufacturing water
+          Blue Ocean For Chemicals Manufacturing LLC, a team of seasoned professionals manufacturing water
           treatment chemistry in Ajman, UAE, built around one idea: formulate for the water you actually have,
           not the water a generic product line assumes you have.
         </motion.p>

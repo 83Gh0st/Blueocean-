@@ -3,7 +3,7 @@ import Reveal, { RevealItem, StaggerGroup } from "../Reveal";
 const VALUES = [
   {
     title: "Quality, batch to batch",
-    copy: "Every formulation is tested against spec before it leaves the facility — consistency you can dose against, not a range that drifts between deliveries.",
+    copy: "Every formulation is tested against spec before it leaves the facility: consistency you can dose against, not a range that drifts between deliveries.",
   },
   {
     title: "Safety, built in",
@@ -11,7 +11,7 @@ const VALUES = [
   },
   {
     title: "Sustainability, in the formulation",
-    copy: "Dosing programs are sized to the system, not oversold — less product wasted, less chemical load on the environment your water returns to.",
+    copy: "Dosing programs are sized to the system, not oversold: less product wasted, less chemical load on the environment your water returns to.",
   },
   {
     title: "Partnership, not a price list",

@@ -15,7 +15,7 @@ export default function Story() {
         <p className="story-lede">
           Blue Ocean started with a simple observation: the Gulf&rsquo;s water is some of the hardest and hottest
           any treatment programme has to deal with, and most of the chemistry on the market wasn&rsquo;t formulated
-          for it. So we built our own — manufactured, tested and dispatched from a single facility in Ajman,
+          for it. So we built our own: manufactured, tested and dispatched from a single facility in Ajman,
           rather than repackaged from somewhere else.
         </p>
         <div className="story-facts">
@@ -46,7 +46,7 @@ export default function Story() {
           fill
           sizes="(max-width: 900px) 100vw, 50vw"
         />
-        <div className="bleed-split-caption">Unit 12, Industrial Area 2 — Ajman</div>
+        <div className="bleed-split-caption">Unit 12, Industrial Area 2, Ajman</div>
       </Reveal>
     </section>
   );

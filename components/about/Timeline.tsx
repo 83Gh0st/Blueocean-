@@ -19,12 +19,12 @@ const CHAPTERS = [
   {
     n: "02",
     title: "Building the range",
-    copy: "The chemistry expands from a single treatment programme into the six lines supplied today — Reverse Osmosis, Chilled Water, Cooling Water, Boiler, Swimming Pool and Potable Water.",
+    copy: "The chemistry expands from a single treatment programme into the six lines supplied today: Reverse Osmosis, Chilled Water, Cooling Water, Boiler, Swimming Pool and Potable Water.",
   },
   {
     n: "03",
     title: "Scaling manufacturing",
-    copy: "In-house formulation and batch testing move into a dedicated facility in Ajman's Industrial Area 2 — full control over raw material sourcing and dosing concentration, batch to batch.",
+    copy: "In-house formulation and batch testing move into a dedicated facility in Ajman's Industrial Area 2, with full control over raw material sourcing and dosing concentration, batch to batch.",
   },
   {
     n: "04",

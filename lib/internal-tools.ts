@@ -35,7 +35,7 @@ export const internalTools: InternalTool[] = [
     slug: "accounting",
     name: "Accounting / ERP",
     description:
-      "Placeholder for whatever finance or ERP system the business ends up needing — transactions, invoicing, inventory, ledgers, reporting. Not built yet.",
+      "Placeholder for whatever finance or ERP system the business ends up needing: transactions, invoicing, inventory, ledgers, reporting. Not built yet.",
     icon: Calculator,
     href: "/internal/accounting",
     status: "coming-soon",

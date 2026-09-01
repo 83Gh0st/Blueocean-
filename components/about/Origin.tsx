@@ -20,7 +20,7 @@ export default function Origin() {
         <div className="origin-text">
           <p>
             Water treatment in the Gulf has to work harder than it does almost anywhere else. Feedwater arrives
-            hotter, harder and saltier than most imported chemistry was ever formulated for — which means a
+            hotter, harder and saltier than most imported chemistry was ever formulated for, which means a
             product built for milder conditions elsewhere quietly under-performs the moment it&rsquo;s dosed into
             a system here.
           </p>
@@ -30,7 +30,7 @@ export default function Origin() {
             Ajman, formulating specifically for regional feedwater rather than adapting an off-the-shelf range to
             fit it.
           </p>
-          <p>That meant starting with the chemistry, not the catalogue — organised today into six treatment lines:</p>
+          <p>That meant starting with the chemistry, not the catalogue. Today, that&rsquo;s organised into six treatment lines:</p>
         </div>
         <div className="origin-lines">
           {LINES.map((line) => (

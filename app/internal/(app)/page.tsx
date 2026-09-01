@@ -7,7 +7,7 @@ export default function InternalDashboardPage() {
       <div className="internal-eyebrow">Staff Portal</div>
       <h1>Internal Tools</h1>
       <p className="lede">
-        Everything here is private to Blue Ocean staff — it never appears on the public site or in search
+        Everything here is private to Blue Ocean staff. It never appears on the public site or in search
         results. Add a new tool any time by dropping a folder under <code>app/internal/</code> and registering it
         in <code>lib/internal-tools.ts</code>.
       </p>

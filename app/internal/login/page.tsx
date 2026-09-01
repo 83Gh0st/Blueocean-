@@ -45,7 +45,7 @@ function LoginForm() {
         <Logo variant="white" mark="icon" height={40} className="internal-login-mark" />
         <h1>Staff Portal</h1>
         <p className="sub">
-          Internal tools for Blue Ocean Chemicals staff — accounting, ERP and operational systems as they're
+          Internal tools for Blue Ocean Chemicals staff: accounting, ERP and operational systems as they're
           built out. Enter the shared portal password to continue.
         </p>
         <form onSubmit={handleSubmit}>

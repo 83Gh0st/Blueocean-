@@ -10,7 +10,7 @@ export default function CatalogHero() {
         <h1>Chemical listing, by treatment line.</h1>
         <p>
           Every formulation Blue Ocean manufactures, organised by the system it protects. Search by name, filter by
-          chemistry type, or browse a full treatment line — then enquire directly on WhatsApp or by email.
+          chemistry type, or browse a full treatment line, then enquire directly on WhatsApp or by email.
         </p>
       </div>
     </section>

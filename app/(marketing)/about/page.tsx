@@ -8,9 +8,9 @@ import CtaBand from "@/components/home/CtaBand";
 import WaveDivider from "@/components/WaveDivider";
 
 export const metadata: Metadata = {
-  title: "Our Story — Blue Ocean Chemicals",
+  title: "Our Story",
   description:
-    "Blue Ocean For Chemicals Manufacturing LLC — why we formulate water treatment chemistry for Gulf conditions specifically, our values, and how a batch of chemistry moves from our Ajman facility to your plant.",
+    "Blue Ocean For Chemicals Manufacturing LLC: why we formulate water treatment chemistry for Gulf conditions specifically, our values, and how a batch of chemistry moves from our Ajman facility to your plant.",
 };
 
 export default function AboutPage() {

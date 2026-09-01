@@ -11,7 +11,7 @@ const FORM_ICON = {
 } as const;
 
 export default function ProductCard({ product }: { product: ChemicalProduct }) {
-  const enquiryMessage = `Hello Blue Ocean Chemicals, I'd like to enquire about ${product.code} — ${product.name}.`;
+  const enquiryMessage = `Hello Blue Ocean Chemicals, I'd like to enquire about ${product.code} (${product.name}).`;
   const FormIcon = FORM_ICON[product.form] ?? Package;
 
   return (

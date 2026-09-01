@@ -9,7 +9,7 @@ export const siteConfig = {
   legalName: "Blue Ocean For Chemicals Manufacturing LLC",
   tagline: "Empowering performance through water innovation.",
   description:
-    "Blue Ocean For Chemicals Manufacturing LLC — decades of combined expertise in chemical manufacturing and water treatment. Reverse Osmosis, Chilled Water, Cooling Water, Boiler, Swimming Pool and Potable Water treatment chemistry, manufactured in Ajman, UAE.",
+    "Blue Ocean For Chemicals Manufacturing LLC: decades of combined expertise in chemical manufacturing and water treatment. Reverse Osmosis, Chilled Water, Cooling Water, Boiler, Swimming Pool and Potable Water treatment chemistry, manufactured in Ajman, UAE.",
   url: "https://blueoceanchemical.com",
 
   address: {

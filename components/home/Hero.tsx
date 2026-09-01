@@ -121,7 +121,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
           >
             Reverse Osmosis, Chilled Water, Cooling Water, Boiler, Swimming Pool and Potable Water treatment
-            chemistry — formulated and manufactured to a single, consistent standard.
+            chemistry, formulated and manufactured to a single, consistent standard.
           </motion.p>
           <motion.div
             className="hero-actions"
