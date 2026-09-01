@@ -59,6 +59,9 @@ export interface ProductLine {
   headline: string;
   description: string;
   applications: string[];
+  /** Representative equipment photo for this treatment line's catalog section header. */
+  image: string;
+  imageAlt: string;
   products: ChemicalProduct[];
 }
 
@@ -79,6 +82,8 @@ export const productLines: ProductLine[] = [
       "Process & pharmaceutical water",
       "Standby / mothballed trains",
     ],
+    image: "https://images.unsplash.com/photo-1615309662243-70f6df917b59?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Stainless steel membrane housings and pressure piping on an RO skid",
     products: [
       {
         id: "boc-ro-210",
@@ -172,6 +177,8 @@ export const productLines: ProductLine[] = [
       "Fan coil & AHU circuits",
       "Condenser water loops",
     ],
+    image: "https://images.unsplash.com/photo-1606340671662-27ee685dd111?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Insulated steel piping on a closed chilled water loop",
     products: [
       {
         id: "boc-ch-810",
@@ -236,6 +243,8 @@ export const productLines: ProductLine[] = [
       "Evaporative condensers",
       "District cooling plants",
     ],
+    image: "https://images.unsplash.com/photo-1761115435501-bebf019aba54?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Industrial cooling towers on a rooftop",
     products: [
       {
         id: "boc-ct-510",
@@ -315,6 +324,8 @@ export const productLines: ProductLine[] = [
       "Condensate return systems",
       "Low, medium & high-pressure plant",
     ],
+    image: "https://images.unsplash.com/photo-1650551182956-47efa0f90b64?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Insulated steam pipes and pressure gauges in a boiler room",
     products: [
       {
         id: "boc-bw-910",
@@ -409,6 +420,8 @@ export const productLines: ProductLine[] = [
       "Water parks & splash pads",
       "Therapy & hydrotherapy pools",
     ],
+    image: "https://images.unsplash.com/photo-1562016600-ece13e8ba570?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Rippling crystal-clear pool water",
     products: [
       {
         id: "boc-pl-170",
@@ -488,6 +501,8 @@ export const productLines: ProductLine[] = [
       "Bottled & bulk drinking water",
       "Camp & remote-site supply",
     ],
+    image: "https://images.unsplash.com/photo-1665590883306-3830f79e6961?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Concrete water reservoir and distribution infrastructure",
     products: [
       {
         id: "boc-pw-210",

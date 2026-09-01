@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
+import Image from "next/image";
 import { allProducts, chemistryClasses, productLines } from "@/lib/chemicals-data";
 import ProductCard from "./ProductCard";
 import Reveal from "../Reveal";
@@ -75,7 +76,7 @@ export default function CatalogClient() {
             {filteredFlat.length} {filteredFlat.length === 1 ? "product" : "products"} found
           </p>
           {filteredFlat.length > 0 ? (
-            <div className="product-grid">
+            <div className="product-grid product-grid--flat">
               {filteredFlat.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
@@ -92,10 +93,19 @@ export default function CatalogClient() {
           return (
             <section className="wrap cat-line-section" id={line.slug} key={line.id}>
               <Reveal className="cat-line-head">
-                <div className="cat-line-icon">
-                  <Icon strokeWidth={1.8} />
+                <div className="cat-line-photo">
+                  <Image
+                    src={line.image}
+                    alt={line.imageAlt}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 360px"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
-                <div>
+                <div className="cat-line-text">
+                  <div className="cat-line-icon">
+                    <Icon strokeWidth={1.8} />
+                  </div>
                   <div className="eyebrow">{line.eyebrow}</div>
                   <h2>{line.name}</h2>
                   <p style={{ marginTop: "0.6rem", maxWidth: "46rem" }}>{line.description}</p>

@@ -10,8 +10,8 @@ interface LogoProps {
 }
 
 const ICON_SRC = {
-  color: "/brand/logo-color.svg",
-  white: "/brand/logo-white.png",
+  color: "/brand/logo-icon-color.svg",
+  white: "/brand/logo-icon-white.png",
 };
 
 /**

@@ -31,6 +31,7 @@ export default function ProcessFlow() {
   return (
     <section className="process" id="process">
       <div className="grain" aria-hidden="true" />
+      <div className="process-grid" aria-hidden="true" />
       <div className="wrap">
         <Reveal className="sec-head">
           <div className="eyebrow on-dark">How a batch reaches your plant</div>

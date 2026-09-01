@@ -55,6 +55,11 @@
      the original --ink so nothing shifts abruptly at a glance, easing
      down into a richer, lighter ocean blue by the bottom edge. */
   --ink-gradient: linear-gradient(180deg, #0b0e1a 0%, #24447a 100%);
+  /* Footer runs the same two colours in reverse: it's the very last thing
+     on the page, easing away from the lighter blue the section above it
+     (Process/CTA) ends on, back down to the deep ink at the true bottom
+     edge of the site. */
+  --ink-gradient-reverse: linear-gradient(180deg, #24447a 0%, #0b0e1a 100%);
 
   /* WhatsApp brand */
   --whatsapp: #25d366;
@@ -1350,8 +1355,19 @@ html.nav-open .nav-toggle span:last-child {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(ellipse 620px 420px at 6% 20%, rgba(24, 155, 206, 0.16), transparent 60%),
-    radial-gradient(ellipse 560px 420px at 94% 90%, rgba(53, 53, 113, 0.32), transparent 58%);
+  background: radial-gradient(ellipse 680px 480px at 8% 15%, rgba(24, 155, 206, 0.26), transparent 60%),
+    radial-gradient(ellipse 620px 480px at 95% 92%, rgba(53, 53, 113, 0.48), transparent 58%),
+    radial-gradient(ellipse 500px 420px at 60% 40%, rgba(22, 116, 183, 0.14), transparent 65%);
+}
+.process-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 40%, transparent 90%);
+  pointer-events: none;
 }
 .process .wrap {
   position: relative;
@@ -1790,7 +1806,7 @@ html.nav-open .nav-toggle span:last-child {
 
 /* ---------- footer ---------- */
 footer {
-  background: var(--ink-gradient);
+  background: var(--ink-gradient-reverse);
   color: rgba(255, 255, 255, 0.55);
   padding: 4rem 0 2rem;
 }
@@ -2558,16 +2574,46 @@ footer {
 }
 
 .cat-line-section {
+  /* Wider than the standard 1280px .wrap — this section carries a photo
+     next to the header text plus a product grid that can run up to 6
+     cards wide, and both read better with more room than the rest of the
+     (text-first) catalog page needs. */
+  max-width: 1800px;
   padding: 3.2rem 0;
   border-top: 1px solid var(--line);
   scroll-margin-top: 130px;
 }
 .cat-line-head {
   display: flex;
-  align-items: flex-start;
-  gap: 1.2rem;
-  margin-bottom: 2rem;
-  max-width: 56rem;
+  align-items: stretch;
+  gap: 2rem;
+  margin-bottom: 2.4rem;
+}
+.cat-line-photo {
+  position: relative;
+  flex: 0 0 320px;
+  width: 320px;
+  min-height: 240px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--mist);
+}
+.cat-line-photo img {
+  object-fit: cover;
+}
+.cat-line-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(11, 14, 26, 0.08);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.cat-line-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 50rem;
+  padding-top: 0.1rem;
 }
 .cat-line-icon {
   width: 46px;
@@ -2578,7 +2624,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  margin-bottom: 0.9rem;
 }
 .cat-line-icon svg {
   width: 23px;
@@ -2604,27 +2650,58 @@ footer {
   padding: 0.3rem 0.7rem;
   border-radius: var(--radius-sm);
 }
+@media (max-width: 780px) {
+  .cat-line-head {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .cat-line-photo {
+    width: 100%;
+    flex-basis: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+}
 
-/* Flexbox, not CSS Grid: with a fixed per-card basis and justify-content:
-   center, an incomplete last row (the filtered search view can return any
-   count, not just multiples of 5) centers itself under the row above
-   instead of the CSS Grid default of stranding the leftover card at the
-   far left with dead space beside it — that "orphan card" reads as
-   unintentional. Card width is tuned so a treatment line's full 5 products
-   (the most any line carries) sit in a single row at desktop widths
-   instead of wrapping into an uneven 3+2 split. */
+/* Per-category grid: CSS Grid with auto-fit, not a fixed card width. A
+   treatment line's product count varies (3 up to 6+) and the section is
+   now wide enough that whatever count a line has still fits in a single
+   row — so auto-fit can freely stretch cards to fill that row at a
+   comfortable size instead of holding every line to the same cramped
+   width regardless of how many products it actually has. 230px is the
+   floor (below that a card's summary/benefits truncate too hard); above
+   it cards grow to share the row evenly. */
 .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+.product-card {
+  min-width: 0;
+}
+@media (max-width: 620px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Filtered search results: flexbox instead, on purpose. This view is a
+   flat, unsorted-length list (any number of results, not bounded to one
+   line's product count), so an incomplete last row is the normal case
+   rather than the exception. Flexbox + justify-content:center means that
+   leftover row centers itself instead of CSS Grid's default of stranding
+   it at the far left with dead space beside it. */
+.product-grid--flat {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.25rem;
 }
-.product-card {
-  flex: 0 1 210px;
-  max-width: 210px;
+.product-grid--flat .product-card {
+  flex: 0 1 260px;
+  max-width: 260px;
 }
 @media (max-width: 620px) {
-  .product-card {
+  .product-grid--flat .product-card {
     flex-basis: 100%;
     max-width: 100%;
   }
@@ -2635,10 +2712,10 @@ footer {
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  padding: 1.15rem 1.1rem 1.05rem;
+  padding: 1.3rem 1.25rem 1.2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.8rem;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
 }
 .product-card::before {

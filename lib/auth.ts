@@ -54,17 +54,30 @@ function constantTimeEqual(a: string, b: string): boolean {
   return mismatch === 0;
 }
 
-/** Compares a submitted password against INTERNAL_APP_PASSWORD in constant time. */
-export function verifyPassword(candidate: string): boolean {
+async function sha256Hex(value: string): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+/**
+ * Compares a submitted password against INTERNAL_APP_PASSWORD in constant
+ * time. Both sides are hashed first specifically so the comparison always
+ * runs against two fixed-length (64 hex char) digests — a plain
+ * constantTimeEqual(candidate, expected) still short-circuits instantly on
+ * a length mismatch, which leaks the real password's length one guess at a
+ * time. Hashing first closes that off.
+ */
+export async function verifyPassword(candidate: string): Promise<boolean> {
   const expected = process.env.INTERNAL_APP_PASSWORD;
   if (!expected) {
     throw new Error(
       "INTERNAL_APP_PASSWORD is not set. Add it to your environment variables (see .env.example)."
     );
   }
-  // Pad to equal length first so constantTimeEqual's length check doesn't leak
-  // the real password length via early return timing.
-  return candidate.length === expected.length && constantTimeEqual(candidate, expected);
+  const [candidateHash, expectedHash] = await Promise.all([sha256Hex(candidate), sha256Hex(expected)]);
+  return constantTimeEqual(candidateHash, expectedHash);
 }
 
 /** Creates a signed, expiring session token to store in the session cookie. */
