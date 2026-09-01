@@ -3,15 +3,11 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+export const contentType = "image/png"; // Updated from image/svg
 
 export default async function OpengraphImage() {
-  // The icon-only mark, paired with a real text wordmark below — the same
-  // pairing used in the nav and footer, rather than the old flattened
-  // lockup image (whose baked-in wordmark reads fine at poster size but
-  // turns soft once it's downsized into a corner of a 1200×630 canvas).
-  const logoData = await readFile(join(process.cwd(), "public/brand/logo-icon-white.png"));
-  const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
+  const logoData = await readFile(join(process.cwd(), "public/brand/logo-color.svg"));
+  const logoSrc = `data:image/svg+xml;base64,${logoData.toString("base64")}`; // Added +xml for safety
 
   return new ImageResponse(
     (
@@ -48,7 +44,6 @@ export default async function OpengraphImage() {
             </div>
           </div>
         </div>
-
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div style={{ display: "flex", color: "#ffffff", fontSize: 58, fontWeight: 600, lineHeight: 1.1, maxWidth: 980 }}>
             Empowering performance through water innovation.
