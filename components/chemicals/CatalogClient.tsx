@@ -76,7 +76,7 @@ export default function CatalogClient() {
             {filteredFlat.length} {filteredFlat.length === 1 ? "product" : "products"} found
           </p>
           {filteredFlat.length > 0 ? (
-            <div className="product-grid product-grid--flat">
+            <div className="product-grid">
               {filteredFlat.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}

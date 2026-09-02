@@ -12,8 +12,15 @@ export const metadata: Metadata = {
 export default function ChemicalsPage() {
   return (
     <>
-      <CatalogHero />
-      <CatalogClient />
+      {/* CatalogHero and CatalogClient share one wider canvas (see .cat-page-shell)
+          so the hero, toolbar, and product sections all line up edge-to-edge —
+          CatalogBottomCta deliberately sits outside it, back at the site's
+          normal 1280px width, since a closing CTA reads better contained
+          than sprawled across the full width the grid above needs. */}
+      <div className="cat-page-shell">
+        <CatalogHero />
+        <CatalogClient />
+      </div>
       <CatalogBottomCta />
     </>
   );

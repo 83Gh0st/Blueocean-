@@ -370,9 +370,9 @@ p {
   margin-bottom: 2.4rem;
 }
 .sec-head h2 {
-  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem);
   margin-top: 0.7rem;
-  line-height: 1.15;
+  line-height: 1.14;
 }
 .sec-pad {
   padding: 5rem 0;
@@ -694,8 +694,8 @@ html.nav-open .nav-toggle span:last-child {
   background: var(--cyan);
 }
 .hero h1 {
-  font-size: clamp(2rem, 4.2vw, 3.6rem);
-  line-height: 1.08;
+  font-size: clamp(2.3rem, 4.8vw, 4.1rem);
+  line-height: 1.06;
   font-weight: 560;
   color: var(--white);
   letter-spacing: -0.015em;
@@ -710,8 +710,8 @@ html.nav-open .nav-toggle span:last-child {
 }
 .hero p.lede {
   margin-top: 1.2rem;
-  font-size: 1.02rem;
-  max-width: 30rem;
+  font-size: 1.15rem;
+  max-width: 32rem;
   color: rgba(255, 255, 255, 0.66);
   line-height: 1.6;
 }
@@ -861,7 +861,7 @@ html.nav-open .nav-toggle span:last-child {
     padding-bottom: 2.2rem;
   }
   .hero h1 {
-    font-size: clamp(1.8rem, 7.5vw, 2.4rem);
+    font-size: clamp(2rem, 8vw, 2.7rem);
   }
   .hero-eyebrow {
     margin-bottom: 0.9rem;
@@ -869,7 +869,7 @@ html.nav-open .nav-toggle span:last-child {
   }
   .hero p.lede {
     margin-top: 1rem;
-    font-size: 0.94rem;
+    font-size: 1.02rem;
   }
   .hero-actions {
     margin-top: 1.4rem;
@@ -907,7 +907,7 @@ html.nav-open .nav-toggle span:last-child {
   font-family: var(--display);
   font-style: normal;
   font-weight: 500;
-  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+  font-size: clamp(1.4rem, 2.7vw, 2.15rem);
   line-height: 1.42;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -1225,14 +1225,14 @@ html.nav-open .nav-toggle span:last-child {
   font-weight: 600;
 }
 .why-item h4 {
-  font-size: 0.95rem;
+  font-size: 1.06rem;
   font-weight: 600;
   margin-bottom: 0.3rem;
   font-family: var(--body);
 }
 .why-item p {
   margin: 0;
-  font-size: 0.84rem;
+  font-size: 0.95rem;
 }
 
 .why-visual {
@@ -1260,7 +1260,7 @@ html.nav-open .nav-toggle span:last-child {
 }
 .why-visual h4 {
   color: var(--white);
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   max-width: 18rem;
   line-height: 1.25;
   font-weight: 560;
@@ -1268,8 +1268,8 @@ html.nav-open .nav-toggle span:last-child {
 .why-visual p {
   color: rgba(255, 255, 255, 0.68);
   margin-top: 0.8rem;
-  max-width: 20rem;
-  font-size: 0.88rem;
+  max-width: 22rem;
+  font-size: 0.98rem;
 }
 @media (max-width: 900px) {
   .why-grid {
@@ -1307,12 +1307,12 @@ html.nav-open .nav-toggle span:last-child {
   color: var(--ocean);
 }
 .cap-tile h4 {
-  font-size: 0.86rem;
+  font-size: 0.97rem;
   font-weight: 600;
   font-family: var(--body);
 }
 .cap-tile p {
-  font-size: 0.76rem;
+  font-size: 0.86rem;
   margin: 0;
   line-height: 1.45;
 }
@@ -1578,8 +1578,8 @@ html.nav-open .nav-toggle span:last-child {
 }
 .cta-band h3 {
   color: var(--white);
-  font-size: 1.5rem;
-  max-width: 24rem;
+  font-size: 1.7rem;
+  max-width: 26rem;
   position: relative;
   z-index: 2;
   font-weight: 560;
@@ -2097,8 +2097,9 @@ footer {
 }
 .story-lede {
   margin-top: 1.4rem;
-  max-width: 30rem;
-  font-size: 1.02rem;
+  max-width: 32rem;
+  font-size: 1.14rem;
+  line-height: 1.6;
 }
 .story-link {
   display: inline-flex;
@@ -2431,6 +2432,16 @@ footer {
 /* =============================================================================
    Chemical catalog page
 ============================================================================= */
+/* Every .wrap reads its max-width from --maxw, so scoping a wider value
+   here widens the hero, toolbar, and product sections together — same
+   left/right edges throughout, rather than the product grid alone
+   breaking out to a different width than the hero above it. 1600px (not
+   the default 1280px): wide enough that a 6-product treatment line's full
+   row fits without cramming each card down to an uncomfortable size. */
+.cat-page-shell {
+  --maxw: 1760px;
+}
+
 .cat-hero {
   background: var(--ink-gradient);
   color: var(--foam);
@@ -2485,6 +2496,7 @@ footer {
 }
 .cat-search {
   flex: 1 1 240px;
+  max-width: 420px;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -2574,11 +2586,6 @@ footer {
 }
 
 .cat-line-section {
-  /* Wider than the standard 1280px .wrap — this section carries a photo
-     next to the header text plus a product grid that can run up to 6
-     cards wide, and both read better with more room than the rest of the
-     (text-first) catalog page needs. */
-  max-width: 1800px;
   padding: 3.2rem 0;
   border-top: 1px solid var(--line);
   scroll-margin-top: 130px;
@@ -2587,7 +2594,16 @@ footer {
   display: flex;
   align-items: stretch;
   gap: 2rem;
-  margin-bottom: 2.4rem;
+  margin: 0 auto 2.4rem;
+  /* Capped and centered rather than left-hugging the full (now wider)
+     section width: photo + text have a natural combined width well short
+     of the 1520px section, and letting the flex row stretch to fill that
+     just leaves dead space trailing off to the right of the text column.
+     Centering a properly-sized block instead gives even margins on both
+     sides — the same "centered group, not stretched to fill" fix as the
+     product grid below it, so the whole section reads as one consistent
+     idea rather than two different layout behaviours stacked together. */
+  max-width: 68rem;
 }
 .cat-line-photo {
   position: relative;
@@ -2605,6 +2621,12 @@ footer {
   content: "";
   position: absolute;
   inset: 0;
+  /* Six different stock photos, six different original colour temperatures —
+     without this they'd read as a grab-bag rather than one system. Same
+     overlay recipe already used on the Hero/CTA band photos, so every
+     photographic moment on the site shares one consistent cool-blue mood. */
+  background: linear-gradient(150deg, rgba(11, 14, 26, 0.4) 0%, rgba(39, 90, 156, 0.3) 55%, rgba(24, 155, 206, 0.2) 100%);
+  mix-blend-mode: multiply;
   box-shadow: inset 0 0 0 1px rgba(11, 14, 26, 0.08);
   border-radius: inherit;
   pointer-events: none;
@@ -2666,47 +2688,35 @@ footer {
 /* Per-category grid: CSS Grid with auto-fit, not a fixed card width. A
    treatment line's product count varies (3 up to 6+) and the section is
    now wide enough that whatever count a line has still fits in a single
-   row — so auto-fit can freely stretch cards to fill that row at a
-   comfortable size instead of holding every line to the same cramped
-   width regardless of how many products it actually has. 230px is the
-   floor (below that a card's summary/benefits truncate too hard); above
-   it cards grow to share the row evenly. */
+   row. justify-items:center + the card's own max-width (below) is what
+   keeps this from going wrong on a low-count line, though: auto-fit's 1fr
+   tracks would otherwise stretch a 3-product row's cards to ~500px+ each
+   trying to fill the row on their own, which is exactly the "obviously
+   stretched to fill space" look that doesn't belong on a product card.
+   Capping the card and centering it in its (wider) track gives the grid
+   the full row width to work with while every card stays a sane,
+   consistent size regardless of how many sit in that row. */
+/* Flexbox, deliberately, for both the per-category grid and the filtered
+   search results below — not CSS Grid. Grid's auto-fit divides the full
+   row width evenly into a track per item regardless of how few items
+   there are, so 3 products in a wide container each get centered inside
+   their own wide, mostly-empty track — three cards adrift with huge gaps
+   between them, not a cluster. Flexbox with a fixed card size and
+   justify-content:center clusters the actual cards together and centers
+   that group as a whole, with any leftover width becoming margin outside
+   the group rather than gaps inside it — correct whether it's 3 cards,
+   6, or an arbitrary-length filtered result list. */
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.5rem;
-}
-.product-card {
-  min-width: 0;
-}
-@media (max-width: 620px) {
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Filtered search results: flexbox instead, on purpose. This view is a
-   flat, unsorted-length list (any number of results, not bounded to one
-   line's product count), so an incomplete last row is the normal case
-   rather than the exception. Flexbox + justify-content:center means that
-   leftover row centers itself instead of CSS Grid's default of stranding
-   it at the far left with dead space beside it. */
-.product-grid--flat {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-.product-grid--flat .product-card {
-  flex: 0 1 260px;
-  max-width: 260px;
-}
-@media (max-width: 620px) {
-  .product-grid--flat .product-card {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
+  gap: 1.5rem;
 }
 .product-card {
+  flex: 0 1 250px;
+  width: 100%;
+  max-width: 270px;
+  min-width: 0;
   position: relative;
   overflow: hidden;
   background: var(--white);
@@ -2717,6 +2727,12 @@ footer {
   flex-direction: column;
   gap: 0.8rem;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
+}
+@media (max-width: 620px) {
+  .product-card {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }
 .product-card::before {
   content: "";

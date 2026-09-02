@@ -3,11 +3,15 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 export const size = { width: 1200, height: 630 };
-export const contentType = "image/png"; // Updated from image/svg
+export const contentType = "image/png";
 
 export default async function OpengraphImage() {
-  const logoData = await readFile(join(process.cwd(), "public/brand/logo-color.svg"));
-  const logoSrc = `data:image/svg+xml;base64,${logoData.toString("base64")}`; // Added +xml for safety
+  // The same coloured wave mark used in the nav and footer (not a white
+  // variant) — Satori (the engine behind ImageResponse) can only rasterise
+  // PNG/JPEG source images, not SVG, so this reads a PNG render of the
+  // exact same artwork rather than the .svg file directly.
+  const logoData = await readFile(join(process.cwd(), "public/brand/logo-icon-color.png"));
+  const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -44,6 +48,7 @@ export default async function OpengraphImage() {
             </div>
           </div>
         </div>
+
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div style={{ display: "flex", color: "#ffffff", fontSize: 58, fontWeight: 600, lineHeight: 1.1, maxWidth: 980 }}>
             Empowering performance through water innovation.
