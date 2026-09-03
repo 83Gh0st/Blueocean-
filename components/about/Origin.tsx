@@ -42,7 +42,7 @@ export default function Origin() {
       </Reveal>
       <Reveal as="div" className="bleed-split-photo" delay={0.1} y={0}>
         <Image
-          src="https://images.unsplash.com/photo-1614935151651-0bea6508db6b?fm=jpg&q=80&w=1800&auto=format&fit=crop"
+          src="/assets/quality_test.png"
           alt="Lab technician testing water treatment chemistry"
           fill
           sizes="(max-width: 900px) 100vw, 50vw"

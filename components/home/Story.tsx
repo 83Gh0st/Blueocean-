@@ -41,7 +41,7 @@ export default function Story() {
       </Reveal>
       <Reveal as="div" className="bleed-split-photo" delay={0.1} y={0}>
         <Image
-          src="https://images.unsplash.com/photo-1589725971211-7e86a631e2c2?fm=jpg&q=80&w=1800&auto=format&fit=crop"
+          src="/assets/our_story.avif"
           alt="Blue Ocean's manufacturing facility"
           fill
           sizes="(max-width: 900px) 100vw, 50vw"

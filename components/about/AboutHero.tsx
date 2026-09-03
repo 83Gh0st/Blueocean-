@@ -15,7 +15,7 @@ export default function AboutHero() {
     <header className="about-hero">
       <div className="about-hero-photo">
         <Image
-          src="https://images.unsplash.com/photo-1726731782158-fcf6822b6ca4?fm=jpg&q=80&w=2400&auto=format&fit=crop"
+          src="/assets/factory2.png"
           alt=""
           fill
           priority

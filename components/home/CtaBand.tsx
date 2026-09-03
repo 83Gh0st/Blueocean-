@@ -9,7 +9,7 @@ export default function CtaBand() {
       <div className="wrap">
         <Reveal className="cta-band">
           <ParallaxPhoto
-            src="https://images.unsplash.com/photo-1509390288171-ce2088f7d08e?fm=jpg&q=80&w=2200&auto=format&fit=crop"
+            src="/assets/factory1.png"
             alt="Water treatment plant equipment"
             strength={25}
           />

@@ -41,11 +41,12 @@ export default function WhyUs() {
             ))}
           </StaggerGroup>
           <Reveal className="why-visual">
-            <ParallaxPhoto
-              src="https://images.unsplash.com/photo-1566221857770-508d35ee6220?fm=jpg&q=80&w=2000&auto=format&fit=crop"
-              alt="Chemical manufacturing facility interior"
-              strength={40}
-            />
+<ParallaxPhoto
+  src="/assets/factory1.png"
+  alt="Chemical manufacturing facility interior"
+  strength={40}
+/>
+
             <div className="why-visual-scrim" />
             <div className="why-visual-content">
               <div className="eyebrow on-dark" style={{ marginBottom: "1rem" }}>
