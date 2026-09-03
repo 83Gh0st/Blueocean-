@@ -12,50 +12,73 @@ function WhatsAppIcon() {
   );
 }
 
-/** Floating click-to-chat button, present on every page. */
+/**
+ * Floating click-to-chat button, present on every page — but only once
+ * the person has scrolled past the hero. It's fixed to the bottom-left of
+ * the *viewport*, and the hero's CTA row ("Request a quote") also sits
+ * toward the left, vertically centred in the hero — on a shorter browser
+ * window those two can land close enough that the button's pulsing green
+ * ring reads as a stray green shade next to the hero buttons. Showing it
+ * only after scrolling clears that on any viewport height, rather than
+ * guessing at fixed spacing that would only hold for some screens.
+ */
 export default function WhatsAppButton() {
+  const [show, setShow] = useState(false);
   const [showLabel, setShowLabel] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setShowLabel(false), 4500);
-    return () => clearTimeout(t);
+    const onScroll = () => setShow(window.scrollY > 600);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!show) return;
+    const t = setTimeout(() => setShowLabel(false), 4500);
+    return () => clearTimeout(t);
+  }, [show]);
+
   return (
-    <motion.div
-      className="wa-float"
-      initial={{ opacity: 0, scale: 0.7, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ delay: 1.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <AnimatePresence>
-        {showLabel && (
-          <motion.span
-            className="wa-float-label"
-            initial={{ opacity: 0, x: -8 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -8 }}
-            transition={{ duration: 0.3 }}
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          className="wa-float"
+          initial={{ opacity: 0, scale: 0.7, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.7, y: 20 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <AnimatePresence>
+            {showLabel && (
+              <motion.span
+                className="wa-float-label"
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -8 }}
+                transition={{ duration: 0.3 }}
+              >
+                Chat with us
+              </motion.span>
+            )}
+          </AnimatePresence>
+          <a
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="wa-float-btn"
+            aria-label="Chat with Blue Ocean Chemicals on WhatsApp"
+            onMouseEnter={() => setShowLabel(true)}
           >
-            Chat with us
-          </motion.span>
-        )}
-      </AnimatePresence>
-      <a
-        href={whatsappHref()}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="wa-float-btn"
-        aria-label="Chat with Blue Ocean Chemicals on WhatsApp"
-        onMouseEnter={() => setShowLabel(true)}
-      >
-        <motion.span
-          className="wa-float-ring"
-          animate={{ scale: [1, 1.5, 1], opacity: [0.6, 0, 0.6] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <WhatsAppIcon />
-      </a>
-    </motion.div>
+            <motion.span
+              className="wa-float-ring"
+              animate={{ scale: [1, 1.5, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <WhatsAppIcon />
+          </a>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

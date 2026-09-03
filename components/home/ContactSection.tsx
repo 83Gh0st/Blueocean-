@@ -66,7 +66,7 @@ export default function ContactSection() {
                     </a>
                   </div>
                   <div className="contact-multi-row">
-                    <span className="contact-multi-tag">Accounts</span>
+                    <span className="contact-multi-tag">Operations</span>
                     <a className="val" href={siteConfig.contact.accountsPhoneHref}>
                       {siteConfig.contact.accountsPhone}
                     </a>

@@ -82,7 +82,7 @@ export const productLines: ProductLine[] = [
       "Process & pharmaceutical water",
       "Standby / mothballed trains",
     ],
-    image: "https://images.unsplash.com/photo-1615309662243-70f6df917b59?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    image: "/assets/RO.png",
     imageAlt: "Stainless steel membrane housings and pressure piping on an RO skid",
     products: [
       {
@@ -177,7 +177,7 @@ export const productLines: ProductLine[] = [
       "Fan coil & AHU circuits",
       "Condenser water loops",
     ],
-    image: "https://images.unsplash.com/photo-1606340671662-27ee685dd111?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    image: "/assets/chiller.png",
     imageAlt: "Insulated steel piping on a closed chilled water loop",
     products: [
       {
@@ -501,7 +501,7 @@ export const productLines: ProductLine[] = [
       "Bottled & bulk drinking water",
       "Camp & remote-site supply",
     ],
-    image: "https://images.unsplash.com/photo-1665590883306-3830f79e6961?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    image: "/assets/pottable.png",
     imageAlt: "Concrete water reservoir and distribution infrastructure",
     products: [
       {
