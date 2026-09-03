@@ -55,11 +55,14 @@
      the original --ink so nothing shifts abruptly at a glance, easing
      down into a richer, lighter ocean blue by the bottom edge. */
   --ink-gradient: linear-gradient(180deg, #0b0e1a 0%, #24447a 100%);
-  /* Footer runs the same two colours in reverse: it's the very last thing
-     on the page, easing away from the lighter blue the section above it
-     (Process/CTA) ends on, back down to the deep ink at the true bottom
-     edge of the site. */
-  --ink-gradient-reverse: linear-gradient(180deg, #24447a 0%, #0b0e1a 100%);
+  /* Footer-only, at the exact values requested: cyan at the top easing to
+     sky at the bottom. Notably lighter than the rest of the site's dark
+     surfaces, which is why the footer's text opacities and its cyan
+     accent moments (tags, link hovers) are handled separately below,
+     rather than sharing --ink-gradient-reverse the way they used to —
+     that gradient was tuned for a near-black background, and plain cyan
+     text/accents would now blend straight into a cyan background. */
+  --footer-gradient: linear-gradient(180deg, rgb(24, 155, 206) 0%, rgb(22, 116, 183) 100%);
 
   /* WhatsApp brand */
   --whatsapp: #25d366;
@@ -1806,8 +1809,8 @@ html.nav-open .nav-toggle span:last-child {
 
 /* ---------- footer ---------- */
 footer {
-  background: var(--ink-gradient-reverse);
-  color: rgba(255, 255, 255, 0.55);
+  background: var(--footer-gradient);
+  color: rgba(255, 255, 255, 0.88);
   padding: 4rem 0 2rem;
 }
 .foot-top {
@@ -1815,7 +1818,7 @@ footer {
   grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
   gap: 2.5rem;
   padding-bottom: 2.8rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   min-width: 0;
 }
 .foot-col {
@@ -1829,7 +1832,7 @@ footer {
   font-size: 0.66rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 1rem;
   font-weight: 500;
 }
@@ -1837,14 +1840,15 @@ footer {
 .foot-col p {
   display: block;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.92);
   margin-bottom: 0.65rem;
   line-height: 1.55;
   overflow-wrap: break-word;
   word-break: break-word;
 }
 .foot-col a:hover {
-  color: var(--cyan);
+  color: var(--white);
+  text-decoration: underline;
 }
 .foot-contact-rows {
   display: flex;
@@ -1865,8 +1869,8 @@ footer {
   font-size: 0.6rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--cyan);
-  background: rgba(24, 155, 206, 0.1);
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.2);
   padding: 0.16rem 0.5rem;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
@@ -1875,20 +1879,21 @@ footer {
 }
 .foot-contact-row a {
   font-size: 0.83rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.92);
   margin-bottom: 0;
   font-weight: 400;
   min-width: 0;
 }
 .foot-contact-row a:hover {
-  color: var(--cyan);
+  color: var(--white);
+  text-decoration: underline;
 }
 .foot-bottom {
   display: flex;
   justify-content: space-between;
   padding-top: 1.7rem;
   font-size: 0.76rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -2616,7 +2621,7 @@ footer {
   align-items: center;
   gap: 1.1rem;
   width: 100%;
-  min-height: 108px;
+  min-height: 260px;
   padding: 1.3rem clamp(1.1rem, 2.6vw, 2rem);
   border: none;
   margin: 0;
@@ -2728,8 +2733,9 @@ footer {
 }
 @media (max-width: 620px) {
   .cat-accordion-header {
-    min-height: 92px;
+    min-height: 190px;
     gap: 0.8rem;
+    align-items: flex-end;
   }
   .cat-accordion-count {
     display: none;
@@ -2755,12 +2761,6 @@ footer {
   justify-content: space-between;
   gap: 0.8rem;
   margin-bottom: 0.45rem;
-}
-.cat-list-row-code {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.03em;
-  color: var(--ink-faint);
 }
 .cat-list-row-form {
   display: inline-flex;
@@ -2885,13 +2885,6 @@ footer {
   width: 13px;
   height: 13px;
   color: var(--ocean);
-}
-.product-code {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.03em;
-  color: var(--ink-faint);
-  white-space: nowrap;
 }
 .product-card-head {
   display: flex;

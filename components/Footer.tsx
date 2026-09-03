@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="foot-top">
           <div className="foot-col">
             <div className="foot-brand">
-              <Logo variant="color" onDark height={42} />
+              <Logo variant="white" height={42} />
             </div>
             <p>
               Chemical manufacturer based in Ajman, United Arab Emirates. Water treatment technologies for Reverse

@@ -27,7 +27,6 @@ export default function ProductCard({ product }: { product: ChemicalProduct }) {
           <FormIcon strokeWidth={1.8} />
           {product.form}
         </span>
-        <span className="product-code">{product.code}</span>
       </div>
 
       <div className="product-card-head">
