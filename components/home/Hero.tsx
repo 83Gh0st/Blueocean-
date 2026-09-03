@@ -129,7 +129,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link href="#contact" className="btn btn-primary">
+<Link href="#contact" className="btn btn-primary" style={{ backgroundColor: '#007bff', borderColor: '#007bff', color: '#ffffff' }}>
               Request a quote
               <svg viewBox="0 0 30 24" fill="none" stroke="currentColor" strokeWidth="4">
                 <path d="M5 12h14M13 6l6 6-6 6" />

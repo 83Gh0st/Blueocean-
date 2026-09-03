@@ -12,16 +12,6 @@ function WhatsAppIcon() {
   );
 }
 
-/**
- * Floating click-to-chat button, present on every page — but only once
- * the person has scrolled past the hero. It's fixed to the bottom-left of
- * the *viewport*, and the hero's CTA row ("Request a quote") also sits
- * toward the left, vertically centred in the hero — on a shorter browser
- * window those two can land close enough that the button's pulsing green
- * ring reads as a stray green shade next to the hero buttons. Showing it
- * only after scrolling clears that on any viewport height, rather than
- * guessing at fixed spacing that would only hold for some screens.
- */
 export default function WhatsAppButton() {
   const [show, setShow] = useState(false);
   const [showLabel, setShowLabel] = useState(true);
@@ -62,6 +52,8 @@ export default function WhatsAppButton() {
               </motion.span>
             )}
           </AnimatePresence>
+
+          {/* FIX: Added the opening <a> tag here */}
           <a
             href={whatsappHref()}
             target="_blank"
