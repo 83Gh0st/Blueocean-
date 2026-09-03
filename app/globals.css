@@ -2438,10 +2438,6 @@ footer {
    breaking out to a different width than the hero above it. 1600px (not
    the default 1280px): wide enough that a 6-product treatment line's full
    row fits without cramming each card down to an uncomfortable size. */
-.cat-page-shell {
-  --maxw: 1760px;
-}
-
 .cat-hero {
   background: var(--ink-gradient);
   color: var(--foam);
@@ -2585,83 +2581,6 @@ footer {
   transform: translateY(-1px);
 }
 
-.cat-line-section {
-  padding: 3.2rem 0;
-  border-top: 1px solid var(--line);
-  scroll-margin-top: 130px;
-}
-.cat-line-head {
-  display: flex;
-  align-items: stretch;
-  gap: 2rem;
-  margin: 0 auto 2.4rem;
-  /* Capped and centered rather than left-hugging the full (now wider)
-     section width: photo + text have a natural combined width well short
-     of the 1520px section, and letting the flex row stretch to fill that
-     just leaves dead space trailing off to the right of the text column.
-     Centering a properly-sized block instead gives even margins on both
-     sides — the same "centered group, not stretched to fill" fix as the
-     product grid below it, so the whole section reads as one consistent
-     idea rather than two different layout behaviours stacked together. */
-  max-width: 68rem;
-}
-.cat-line-photo {
-  position: relative;
-  flex: 0 0 320px;
-  width: 320px;
-  min-height: 240px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--mist);
-}
-.cat-line-photo img {
-  object-fit: cover;
-}
-.cat-line-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  /* Six different stock photos, six different original colour temperatures —
-     without this they'd read as a grab-bag rather than one system. Same
-     overlay recipe already used on the Hero/CTA band photos, so every
-     photographic moment on the site shares one consistent cool-blue mood. */
-  background: linear-gradient(150deg, rgba(11, 14, 26, 0.4) 0%, rgba(39, 90, 156, 0.3) 55%, rgba(24, 155, 206, 0.2) 100%);
-  mix-blend-mode: multiply;
-  box-shadow: inset 0 0 0 1px rgba(11, 14, 26, 0.08);
-  border-radius: inherit;
-  pointer-events: none;
-}
-.cat-line-text {
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: 50rem;
-  padding-top: 0.1rem;
-}
-.cat-line-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius-md);
-  background: var(--brand-gradient);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.9rem;
-}
-.cat-line-icon svg {
-  width: 23px;
-  height: 23px;
-}
-.cat-line-head h2 {
-  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
-  margin-top: 0.2rem;
-}
-.cat-line-head .applications {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-  margin-top: 0.8rem;
-}
 .cat-app-chip {
   font-family: var(--mono);
   font-size: 0.65rem;
@@ -2672,40 +2591,231 @@ footer {
   padding: 0.3rem 0.7rem;
   border-radius: var(--radius-sm);
 }
-@media (max-width: 780px) {
-  .cat-line-head {
-    flex-direction: column;
-    gap: 1.2rem;
+
+/* ---------- accordion rows — one collapsible bar per treatment line,
+   photo as the row's own background rather than a separate boxed
+   element, so browsing all six lines costs a lot less vertical space
+   than the previous always-open header+grid/split layouts did. First
+   line opens by default (a preview of what expanding shows); the rest
+   stay collapsed until clicked. ---------- */
+.cat-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2.6rem 0 4rem;
+}
+.cat-accordion-row {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  scroll-margin-top: 130px;
+}
+.cat-accordion-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+  min-height: 108px;
+  padding: 1.3rem clamp(1.1rem, 2.6vw, 2rem);
+  border: none;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: var(--ink);
+  -webkit-tap-highlight-color: transparent;
+}
+.cat-accordion-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.cat-accordion-bg img {
+  object-fit: cover;
+}
+.cat-accordion-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Heavier scrim than the old boxed photo treatment needed — text sits
+     directly on top of the image here instead of beside it, so it has to
+     hold up across the whole photo, not just tint it. */
+  background: linear-gradient(100deg, rgba(11, 14, 26, 0.92) 0%, rgba(39, 90, 156, 0.72) 55%, rgba(24, 155, 206, 0.5) 100%);
+}
+.cat-accordion-icon {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+.cat-accordion-icon svg {
+  width: 21px;
+  height: 21px;
+}
+.cat-accordion-title {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.cat-accordion-title h2 {
+  color: var(--white);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  margin-top: 0.28rem;
+}
+.cat-accordion-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+.cat-accordion-count {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.68);
+  white-space: nowrap;
+}
+.cat-accordion-chevron {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s var(--ease), background 0.35s;
+}
+.cat-accordion-chevron svg {
+  width: 16px;
+  height: 16px;
+}
+.cat-accordion-row.open .cat-accordion-chevron {
+  transform: rotate(180deg);
+  background: var(--cyan);
+  border-color: var(--cyan);
+}
+.cat-accordion-body {
+  overflow: hidden;
+  background: var(--white);
+}
+.cat-accordion-body-inner {
+  padding: 1.8rem clamp(1.1rem, 2.6vw, 2rem) 2.1rem;
+}
+.cat-accordion-body-inner p.desc {
+  max-width: 50rem;
+  color: var(--ink-soft);
+}
+.cat-accordion-body-inner .applications {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.9rem;
+}
+@media (max-width: 620px) {
+  .cat-accordion-header {
+    min-height: 92px;
+    gap: 0.8rem;
   }
-  .cat-line-photo {
-    width: 100%;
-    flex-basis: auto;
-    min-height: 0;
-    aspect-ratio: 16 / 9;
+  .cat-accordion-count {
+    display: none;
   }
 }
 
-/* Per-category grid: CSS Grid with auto-fit, not a fixed card width. A
-   treatment line's product count varies (3 up to 6+) and the section is
-   now wide enough that whatever count a line has still fits in a single
-   row. justify-items:center + the card's own max-width (below) is what
-   keeps this from going wrong on a low-count line, though: auto-fit's 1fr
-   tracks would otherwise stretch a 3-product row's cards to ~500px+ each
-   trying to fill the row on their own, which is exactly the "obviously
-   stretched to fill space" look that doesn't belong on a product card.
-   Capping the card and centering it in its (wider) track gives the grid
-   the full row width to work with while every card stays a sane,
-   consistent size regardless of how many sit in that row. */
-/* Flexbox, deliberately, for both the per-category grid and the filtered
-   search results below — not CSS Grid. Grid's auto-fit divides the full
-   row width evenly into a track per item regardless of how few items
-   there are, so 3 products in a wide container each get centered inside
-   their own wide, mostly-empty track — three cards adrift with huge gaps
-   between them, not a cluster. Flexbox with a fixed card size and
-   justify-content:center clusters the actual cards together and centers
-   that group as a whole, with any leftover width becoming margin outside
-   the group rather than gaps inside it — correct whether it's 3 cards,
-   6, or an arbitrary-length filtered result list. */
+/* Compact list rows — a hairline-divided list rather than boxed cards,
+   for the product listing inside the split layout above. Every row keeps
+   the same enquire-on-WhatsApp action as the fuller ProductCard, just in
+   a lighter-weight format that suits sitting in a narrower column
+   alongside a photo instead of a full-width grid. */
+.cat-list {
+  margin-top: 1.7rem;
+  border-top: 1px solid var(--line);
+}
+.cat-list-row {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.cat-list-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.45rem;
+}
+.cat-list-row-code {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+}
+.cat-list-row-form {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ocean);
+  background: rgba(39, 90, 156, 0.08);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+}
+.cat-list-row-form svg {
+  width: 12px;
+  height: 12px;
+}
+.cat-list-row h4 {
+  font-size: 1rem;
+  margin: 0 0 0.32rem;
+}
+.cat-list-row p {
+  font-size: 0.87rem;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.55;
+}
+.cat-list-row-enquire {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--ocean);
+}
+.cat-list-row-enquire svg {
+  width: 14px;
+  height: 14px;
+}
+.cat-list-row-enquire:hover {
+  color: var(--sky);
+}
+
+/* Flexbox, deliberately, for the higher-count treatment lines' card grid
+   and the filtered search results — not CSS Grid. Grid's auto-fit divides
+   the full row width evenly into a track per item regardless of how few
+   items there are, so a handful of products in a wide container each get
+   centered inside their own wide, mostly-empty track — cards adrift with
+   huge gaps between them, not a cluster. Flexbox with a fixed card size
+   and justify-content:center clusters the actual cards together and
+   centers that group as a whole, with any leftover width becoming margin
+   outside the group rather than gaps inside it. */
 .product-grid {
   display: flex;
   flex-wrap: wrap;

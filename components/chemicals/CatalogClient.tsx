@@ -1,15 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { allProducts, chemistryClasses, productLines } from "@/lib/chemicals-data";
 import ProductCard from "./ProductCard";
-import Reveal from "../Reveal";
+import ProductListRow from "./ProductListRow";
 
 export default function CatalogClient() {
   const [query, setQuery] = useState("");
   const [activeClass, setActiveClass] = useState<string>("All");
+  const [openLines, setOpenLines] = useState<Set<string>>(new Set(["ro"]));
 
   const filtering = query.trim().length > 0 || activeClass !== "All";
 
@@ -26,6 +28,15 @@ export default function CatalogClient() {
       return matchesQuery && matchesClass;
     });
   }, [query, activeClass]);
+
+  function toggleLine(id: string) {
+    setOpenLines((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
 
   return (
     <>
@@ -59,7 +70,12 @@ export default function CatalogClient() {
               {productLines.map((line) => {
                 const Icon = line.icon;
                 return (
-                  <a key={line.id} href={`#${line.slug}`} className="cat-line-pill">
+                  <a
+                    key={line.id}
+                    href={`#${line.slug}`}
+                    className="cat-line-pill"
+                    onClick={() => setOpenLines((prev) => new Set(prev).add(line.id))}
+                  >
                     <Icon strokeWidth={1.8} />
                     {line.shortName}
                   </a>
@@ -88,44 +104,70 @@ export default function CatalogClient() {
           )}
         </div>
       ) : (
-        productLines.map((line) => {
-          const Icon = line.icon;
-          return (
-            <section className="wrap cat-line-section" id={line.slug} key={line.id}>
-              <Reveal className="cat-line-head">
-                <div className="cat-line-photo">
-                  <Image
-                    src={line.image}
-                    alt={line.imageAlt}
-                    fill
-                    sizes="(max-width: 900px) 100vw, 360px"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div className="cat-line-text">
-                  <div className="cat-line-icon">
+        <div className="wrap cat-accordion">
+          {productLines.map((line) => {
+            const Icon = line.icon;
+            const isOpen = openLines.has(line.id);
+            return (
+              <div className={`cat-accordion-row${isOpen ? " open" : ""}`} id={line.slug} key={line.id}>
+                <button
+                  type="button"
+                  className="cat-accordion-header"
+                  onClick={() => toggleLine(line.id)}
+                  aria-expanded={isOpen}
+                  aria-controls={`${line.id}-panel`}
+                >
+                  <div className="cat-accordion-bg">
+                    <Image src={line.image} alt="" fill sizes="100vw" style={{ objectFit: "cover" }} />
+                  </div>
+                  <div className="cat-accordion-icon">
                     <Icon strokeWidth={1.8} />
                   </div>
-                  <div className="eyebrow">{line.eyebrow}</div>
-                  <h2>{line.name}</h2>
-                  <p style={{ marginTop: "0.6rem", maxWidth: "46rem" }}>{line.description}</p>
-                  <div className="applications">
-                    {line.applications.map((a) => (
-                      <span className="cat-app-chip" key={a}>
-                        {a}
-                      </span>
-                    ))}
+                  <div className="cat-accordion-title">
+                    <div className="eyebrow on-dark">{line.eyebrow}</div>
+                    <h2>{line.name}</h2>
                   </div>
-                </div>
-              </Reveal>
-              <div className="product-grid">
-                {line.products.map((p) => (
-                  <ProductCard key={p.id} product={{ ...p }} />
-                ))}
+                  <div className="cat-accordion-meta">
+                    <span className="cat-accordion-count">
+                      {line.products.length} {line.products.length === 1 ? "product" : "products"}
+                    </span>
+                    <span className="cat-accordion-chevron">
+                      <ChevronDown strokeWidth={2} />
+                    </span>
+                  </div>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      id={`${line.id}-panel`}
+                      className="cat-accordion-body"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <div className="cat-accordion-body-inner">
+                        <p className="desc">{line.description}</p>
+                        <div className="applications">
+                          {line.applications.map((a) => (
+                            <span className="cat-app-chip" key={a}>
+                              {a}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="cat-list">
+                          {line.products.map((p) => (
+                            <ProductListRow key={p.id} product={p} />
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </section>
-          );
-        })
+            );
+          })}
+        </div>
       )}
     </>
   );
