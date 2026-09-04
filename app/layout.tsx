@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
+  alternates: {
+  canonical: siteConfig.url,
+},
 
   title: {
     default: `${siteConfig.name}: Premium Water Treatment Chemistry, UAE`,
