@@ -4,11 +4,18 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+
   title: {
     default: `${siteConfig.name}: Premium Water Treatment Chemistry, UAE`,
     template: `%s · ${siteConfig.name}`,
   },
+
   description: siteConfig.description,
+
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
@@ -17,6 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_AE",
   },
+
   twitter: {
     card: "summary",
     title: siteConfig.name,
